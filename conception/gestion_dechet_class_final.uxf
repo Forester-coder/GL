@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1298</x>
+      <y>638</y>
+      <w>308</w>
+      <h>242</h>
+    </coordinates>
+    <panel_attributes>user
+bg=#D3D3D3
+--
+ -user_id : uuid
+ -email : string
+ -password : string
+ -type : Enum&lt;UserType&gt;
+--
+ +loginUser() : void
+ +registerUser() : void
+ +getInfo() : array
+ +addRole(role : Role)
+ +removeRole() : void
+ +subscribe(plan : SubscriptionPlan) : void
+ +cancelSubscription() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1199</x>
+      <y>946</y>
+      <w>176</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Person
+bg=#FF4500
+--
+ -firstName : string
+ -lastName : string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1540</x>
+      <y>946</y>
+      <w>154</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>Company
+bg=#FF4500
+--
+ -name : string
+ -description : text</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1221</x>
+      <y>869</y>
+      <w>165</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1551</x>
+      <y>869</y>
+      <w>110</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1661</x>
+      <y>319</y>
+      <w>176</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Role
+bg=red
+--
+  +nom : string
+  +description : text
+--
+  -addRole() : void  
+  -removeRole() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1914</x>
+      <y>165</y>
+      <w>363</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>Permission
+bg=red
+--
+  +nom : string
+  +description : text
+--
+  -addPermission() : void  
+  -removePermission() : void 
+  +checkPermission(permissionName : string) : bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1826</x>
+      <y>286</y>
+      <w>242</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..*
+m2=1..*
+&lt; role_permission &gt;</panel_attributes>
+    <additional_attributes>10.0;70.0;180.0;70.0;180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1595</x>
+      <y>418</y>
+      <w>176</w>
+      <h>286</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=0..*
+&lt; user_role &gt;</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1936</x>
+      <y>913</y>
+      <w>198</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>PaymentMethod
+bg=#FFA500
+--
+ -id : uuid
+ -nom : string
+ -description : text
+ -frais : double
+ -actif : booleen
+--
+ +getStatut() : booleen
+ +setStatut() : void </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1914</x>
+      <y>374</y>
+      <w>286</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>Subscription
+bg=#FFD700
+--
+ -id : uuid
+ -date_debut : date
+ -date_fin : date
+ -statut : booleen
+--
+ +getStatut() : booleen
+ +setStatut() : void </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1925</x>
+      <y>638</y>
+      <w>275</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>Payment
+bg=#FFD700
+--
+ -id : uuid
+ -montant : double
+ -date_paiement : date 
+ -statut : string
+--
+ +getMontant() : double
+ +setMontant(montant : double) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2035</x>
+      <y>517</y>
+      <w>231</w>
+      <h>143</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..*
+m2=1..1
+&lt; a pour moyen de paiement
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2024</x>
+      <y>781</y>
+      <w>242</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=1..1
+&lt; a pour methode de paiement</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1595</x>
+      <y>451</y>
+      <w>341</w>
+      <h>341</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=1..1
+&lt; a pour user </panel_attributes>
+    <additional_attributes>10.0;290.0;290.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2431</x>
+      <y>363</y>
+      <w>209</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>SuscriptionPlan
+bg=#FFD700
+--
+ -id : uuid
+ -nom : string
+ -description : text
+ -prix : double
+ -duree : int
+ -caractéristique
+--
+ +getNom() : string
+ +getPreNom() : string
+ +getDescription() : string
+ +setPreNom() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2189</x>
+      <y>440</y>
+      <w>264</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=1..1
+a por plan de souscription &gt;</panel_attributes>
+    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>2442</x>
+      <y>253</y>
+      <w>176</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>la duree du plan de
+souscription est enjour
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2519</x>
+      <y>319</y>
+      <w>33</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1166</x>
+      <y>0</y>
+      <w>264</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Post
+bg=#00ffff
+--
+ -id : int
+ -content : text
+--
+ +addcontent(content : string) : void 
+ </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2057</x>
+      <y>0</y>
+      <w>308</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Commentaire
+bg=#00ffff
+--
+  -id : uuid
+  -content : string
+--
+  +addCommentaire(content : string) : void </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1419</x>
+      <y>33</y>
+      <w>660</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=1..1
+&lt; a pour post</panel_attributes>
+    <additional_attributes>10.0;20.0;580.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1298</x>
+      <y>88</y>
+      <w>297</w>
+      <h>572</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=1..1
+&lt; a poster</panel_attributes>
+    <additional_attributes>180.0;500.0;180.0;60.0;10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>121</x>
+      <y>440</y>
+      <w>198</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>Position
+bg=blue
+--
+ latitude : double
+ longitude : double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>88</x>
+      <y>616</y>
+      <w>275</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Car
+bg=black
+--
+ -licencePlate : string
+ -capacity : int
+ -pickUpCompanyId : int
+--
+ +updatePosition(pos : Position) : void </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>209</x>
+      <y>506</y>
+      <w>33</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>825</x>
+      <y>143</y>
+      <w>220</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Address
+bg=yellow
+--
+ -address_id
+ -pickupdays : List&lt;String&gt;
+--
+ +getAddress() : void </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>671</x>
+      <y>616</y>
+      <w>506</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>PickupCompany
+bg=green
+--
+ -pickupcompanyId
+--
+ +assignNeighborhood(data : Neighborhod) : string
+ +getAssignedNeighborhoods(data : Neighborhod) : List&lt;Neighborhood&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>759</x>
+      <y>363</y>
+      <w>363</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>BaseCompany
+bg=green
+--
+ -pickupCompanyId : int
+--
+ +assignNeighborhood(datz : neighborhood) : string </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>913</x>
+      <y>429</y>
+      <w>33</w>
+      <h>209</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>55</x>
+      <y>1012</y>
+      <w>506</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>pickupPoint
+bg=green
+--
+  -pickupPoint : int
+--
+  +assignNeighborhood(data : Neighborhod) : string
+  +getAssignedNeighborhoods(data : Neighborhod) : List&lt;Neighborhood&gt; </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>462</x>
+      <y>473</y>
+      <w>198</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>PickUpPlan
+bg=green
+--
+  -pickupplan_id : int
+  -pickupdays : List&lt;String&gt;
+--
+  +getDetails() : string  </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>1045</y>
+      <w>165</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>city
+bg=yellow
+--
+ -city_id : int
+ -name : string
+--
+ +getdetails() : void </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>902</x>
+      <y>858</y>
+      <w>198</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Neighborhood
+bg=yellow
+--
+  -neighborhood_id : int 
+  -name : string
+--
+  +getDetais() : void  </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>352</x>
+      <y>660</y>
+      <w>341</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..1
+m2=0..*
+a pour company &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;290.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>407</x>
+      <y>869</y>
+      <w>517</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m2=0..*
+m1=1..1
+a pour quartier &gt;</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;20.0;450.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>990</x>
+      <y>946</y>
+      <w>55</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=1..1</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>528</x>
+      <y>561</y>
+      <w>396</w>
+      <h>341</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=1..1
+a por quartier &gt;</panel_attributes>
+    <additional_attributes>340.0;280.0;30.0;270.0;30.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>649</x>
+      <y>506</y>
+      <w>242</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=0..*
+&lt; a pour plan de ramassage &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;130.0;20.0;130.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>473</y>
+      <w>143</w>
+      <h>627</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0;20.0;550.0;50.0;550.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>176</y>
+      <w>649</w>
+      <h>286</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;240.0;10.0;10.0;570.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1034</x>
+      <y>176</y>
+      <w>473</w>
+      <h>484</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..1
+m2=0..*
+&lt; a pour addresse</panel_attributes>
+    <additional_attributes>290.0;420.0;290.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1034</x>
+      <y>209</y>
+      <w>297</w>
+      <h>726</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=1..1
+&lt; a pour quartier</panel_attributes>
+    <additional_attributes>60.0;630.0;140.0;630.0;140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1727</x>
+      <y>924</y>
+      <w>154</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;UserType&gt;&gt;
+bg=#FF4500
+--
+ PERSON
+ COMPANY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1595</x>
+      <y>792</y>
+      <w>231</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;190.0;10.0;190.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1540</x>
+      <y>99</y>
+      <w>583</w>
+      <h>561</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=1..1
+&lt;  pour utilisateur</panel_attributes>
+    <additional_attributes>40.0;490.0;40.0;50.0;490.0;50.0;490.0;10.0</additional_attributes>
+  </element>
+</diagram>
