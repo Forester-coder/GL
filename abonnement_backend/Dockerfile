@@ -1,29 +1,41 @@
-# Utiliser une image PHP avec extensions nécessaires
+# Utiliser une image de base PHP avec PHP-FPM
 FROM php:8.2-fpm
 
-# Installer des dépendances
 RUN apt-get update && apt-get install -y \
     git \
-    unzip \
-    libzip-dev \
+    curl \
     libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
     libonig-dev \
-    libmcrypt-dev \
-    && docker-php-ext-install zip pdo_mysql mbstring gd
+    libxml2-dev \
+    libpq-dev \
+    libzip-dev \
+    libcurl4-openssl-dev \
+    zip \
+    unzip \
+    default-mysql-client
+
+# Install PHP extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip curl intl
 
 # Installer Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+
+
 # Définir le répertoire de travail
-WORKDIR ./var/www
+WORKDIR /var/www/html
 
 # Copier les fichiers de l'application
 COPY . .
 
 # Installer les dépendances PHP
-RUN composer install
+RUN composer install --no-dev --optimize-autoloader
 
 # Définir les permissions
-RUN chown -R www-data:www-data /var/www
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-EXPOSE 9000
+# Démarrer PHP-FPM
+CMD ["php-fpm"]

@@ -3,21 +3,37 @@ import API from "../services/api";
 
 
 
+
 // Créer le contexte utilisateur
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const [subscriptions, setSubscriptions] = useState([]);
 
   // Charger les données utilisateur et le token depuis le local storage
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
 
-    if (storedUser) setUser(JSON.parse(storedUser));
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUser(parsedUser);
+      fetchSubscriptions(parsedUser.id);
+    }
     if (storedToken) setToken(storedToken);
   }, []);
+
+
+  const fetchSubscriptions = async (userId) => {
+    try {
+      const response = await API.get(`/users/${userId}/subscriptions`);
+      setSubscriptions(response.data.subscriptions);
+    } catch (error) {
+      console.error('Failed to fetch subscriptions', error);
+    }
+  };
 
   // Fonction pour gérer la connexion
   const login = (userData, authToken) => {
@@ -54,7 +70,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout, subscriptions }}>
       {children}
     </AuthContext.Provider>
   );

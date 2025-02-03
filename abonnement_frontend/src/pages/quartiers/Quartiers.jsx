@@ -140,16 +140,18 @@ function Quartiers() {
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
 
-            {/* Bouton pour ajouter un quartier */}
-            <Button variant="primary" onClick={handleAdd} className="mb-4">
-                Ajouter un quartier
-            </Button>
 
-            {/* Bouton pour exporter en PDF */}
-            <Button variant="secondary" onClick={exportToPDF} className="mb-4">
-                Exporter en PDF
-            </Button>
+        
+                {/* Bouton pour ajouter un quartier */}
+                <Button variant="primary" onClick={handleAdd} className="mb-4">
+                    Ajouter un quartier
+                </Button>
 
+                {/* Bouton pour exporter en PDF */}
+                <Button variant="secondary" onClick={exportToPDF} className="mb-4">
+                    Exporter en PDF
+                </Button>
+         
             {/* Liste des quartiers */}
             <div className="table-responsive">
                 <table className="table table-striped table-bordered">

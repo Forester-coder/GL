@@ -7,17 +7,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SubscriptionPlan extends Model
 {
-
-
     protected $fillable = [
         'name',
         'price',
         'duration',
-        'features',
     ];
 
-
-    function subscription(): HasMany
+    /**
+     * Get the subscriptions for the subscription plan.
+     */
+    public function subscriptions(): HasMany
     {
         return $this->hasMany(Subscription::class);
     }

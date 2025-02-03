@@ -1,14 +1,8 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Button, Modal, Form, Table, Alert } from 'react-bootstrap';
 
-const API = axios.create({
-    baseURL: 'http://localhost:8000/api',
-    withCredentials: true,
-    headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
-});
+import { Button, Modal, Form, Table, Alert } from 'react-bootstrap';
+import API from '../../services/api'; // Importer l'instance d'Axios configurée
+
 
 function Depotoirs() {
     const [depotoirs, setDepotoirs] = useState([]);

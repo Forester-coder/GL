@@ -9,10 +9,14 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\QuartierController;
 use App\Http\Controllers\SubscriptionPlanController;
+use App\Http\Controllers\UserController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+Route::get('/users/{id}/subscriptions', [UserController::class, 'subscriptions']);
+
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -29,6 +33,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
     Route::post('/momo-pay', [MomoPayController::class, 'initiatePayment']);
+    Route::get('/momo-pay/{id}', [MomoPayController::class, 'showUser']);
 });
 
 

@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\VerifyPaymentRepeatedlyJob;
+
 use App\Models\Payment;
-use App\Models\PaymentMethod;
 use App\Models\Subscription;
 use App\Models\SubscriptionPlan;
 use App\Services\MtnMobileMoneyService;
@@ -13,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
-use function Psy\debug;
+
 
 class MomoPayController extends Controller
 {
@@ -32,8 +31,6 @@ class MomoPayController extends Controller
             'planId' => 'required',
             'phoneNumber' => 'required|string',
         ]);
-
-        Log::debug('hello');
 
 
         $plan =  SubscriptionPlan::find($validated['planId']);
@@ -66,10 +63,10 @@ class MomoPayController extends Controller
                 'amount' => $plan->price,
                 'payment_date' => now(),
                 'statuts' => 'PENDING',
-                'transactionId' =>  $transactionId ,
+                'transactionId' =>  $transactionId,
             ]);
 
-        
+
 
             return response()->json([
                 'transactionId' => $transactionId,
@@ -84,5 +81,21 @@ class MomoPayController extends Controller
             'message' => 'Payment initiation failed.',
             'error' => $response['error'],
         ], 400);
+    }
+
+    function showUser($id) {
+
+        $user = Auth::user();
+
+        if ($user->id != $id) {
+            return response()->json(['message' => 'Unauthorized access.'], 403);
+        }
+
+        $subscriptions = Subscription::where('user_id', $id)->with('plan')->get();
+
+        return response()->json([
+            'user' => $user,
+            'subscriptions' => $subscriptions,
+        ]);
     }
 }
